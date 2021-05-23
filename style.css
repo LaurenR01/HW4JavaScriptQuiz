@@ -1,0 +1,40 @@
+body{
+    background-color: bisque;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    display: block;
+}
+
+div {
+    width: 650px;
+    color: brown;
+}
+.question{
+font-weight: bold;
+padding: 25px;
+}
+.answer{
+    margin: 15px 0px;
+}
+
+#submit{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 20px;
+    padding: 10px 15px;
+    background-color: brown;
+    color: bisque;
+    border: 2px solid brown;
+    font-weight: bold;
+    font-size: 110%;
+    letter-spacing: 0.5px;
+}
+#submit:hover{
+    background-color: bisque;
+    color: brown;
+    /* border: 2px solid brown; */
+}
+h1{
+    text-align: center;
+    font-weight: bold;
+    color: brown;
+
+}

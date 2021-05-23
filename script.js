@@ -1,16 +1,56 @@
+// function to display the quiz
+function displayQuiz(){
+    const output = [];
+    myQuestions.forEach(
+        (currentQuestion, questionNumber) => {
+            const answers = [];
+            for(letter in currentQuestion.answers){
+                answers.push(
+                    `<label>
+                        <input type="radio" name="question${questionNumber}" value="${letter}">
+                        ${letter} :
+                        ${currentQuestion.answers[letter]}
+                    </label>`
+                );
+            }
+            output.push(
+                `<div class="question"> ${currentQuestion.question}</div>
+                <div class ="answers"> ${answers.join('')}</div>`
+            );
+        }
+    );
+    quizBox.innerHTML = output.join('');
+}
+// function to display the results
+function displayResults(){
+    const answerBoxes = quizBox.querySelectorAll('.answers');
+    let numberCorrect = 0;
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
+        const answerBoxes = answerBoxes[questionNumber];
+        const selector = `input[name=question${questionNumber}]:checked`;
+        const guess = (answerBoxes.querySelector(selector) || {}).value;
+
+        if(guess === currentQuestion.correctAnswer){
+            numberCorrect++;
+            answerBoxes[questionNumber].style.color = 'lightgreen';}
+        else{
+            answerBoxes[questionNumber].style.color = 'red';
+        }
+    
+    });
+    showResults.innerHTML = `${numberCorrect} out of ${myQuestions.length}`;
+};
+
+
+// list of variables
 const quizBox = document.getElementById('quiz');
 const showResults = document.getElementById('results');
 const submitButton = document.getElementById('submit');
+const answerBoxes = quizBox.querySelectorAll('.answers');
+let numberCorrect = 0;
 
-function displayQuiz(){};
-
-function displayResults(){};
-
-displayQuiz();
-
-submitButton.addEventListener('click', displayResults);
 // Questions and answers taken from W3schools JavaScript Quiz.  Link in README
-const questionArray = [
+const myQuestions = [
     {
         question: "Inside which HTML element do we put Javascript?",
         answers: {
@@ -107,3 +147,9 @@ const questionArray = [
         correctAnswer: "b"
     }
 ]
+// Pagination Code
+
+// showSlide(currentSlide);
+
+submitButton.addEventListener('click', displayResults);
+displayQuiz();
