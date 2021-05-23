@@ -3,20 +3,20 @@ body{
     font-family:Georgia, 'Times New Roman', Times, serif;
     display: block;
 }
-
-div {
+#quiz {
     width: 650px;
+    /* height: 750px; */
     color: brown;
 }
 .question{
 font-weight: bold;
 padding: 25px;
 }
-.answer{
+.answers{
     margin: 15px 0px;
 }
 
-#submit{
+button{
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin: 20px;
     padding: 10px 15px;
@@ -27,7 +27,7 @@ padding: 25px;
     font-size: 110%;
     letter-spacing: 0.5px;
 }
-#submit:hover{
+button:hover{
     background-color: bisque;
     color: brown;
     /* border: 2px solid brown; */
@@ -36,5 +36,21 @@ h1{
     text-align: center;
     font-weight: bold;
     color: brown;
-
+}
+.slide{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.active-slide{
+    opacity: 1;
+    z-index: 2;
+}
+#container{
+    position: relative;
+    height: 150px;
 }

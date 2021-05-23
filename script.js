@@ -14,8 +14,10 @@ function displayQuiz(){
                 );
             }
             output.push(
-                `<div class="question"> ${currentQuestion.question}</div>
-                <div class ="answers"> ${answers.join('')}</div>`
+                `<div class="slide">
+                <div class="question"> ${currentQuestion.question}</div>
+                <div class ="answers"> ${answers.join("")}
+                </div></div>`
             );
         }
     );
@@ -40,13 +42,38 @@ function displayResults(){
     });
     showResults.innerHTML = `${numberCorrect} out of ${myQuestions.length}`;
 };
-
-
+// function to show a slide
+function showSlide(n) {
+    slides[currentSlide].classList.remove('active-slide');
+    slides[n].classList.add('active-slide');
+    currentSlide = n;
+    if (currentSlide === 0) {
+        previousBtn.style.display = 'none';}
+    else{
+        previousBtn.style.display = 'inline-block';
+    }
+    if (currentSlide === slides.length-1){
+        nextBtn.style.display = 'none';
+        submitButton.style.display = 'inline-block';
+    }
+    else{
+        nextBtn.style.display = 'inline-block';
+        submitButton.style.display = 'none';
+    }
+}
+// function to switch to next slide
+function showNextSlide(){
+    showSlide(currentSlide + 1);
+}
+// function to switch to previous slide
+function showPreviousSlide(){
+    showSlide(currentSlide - 1);
+}
 // list of variables
 const quizBox = document.getElementById('quiz');
 const showResults = document.getElementById('results');
 const submitButton = document.getElementById('submit');
-const answerBoxes = quizBox.querySelectorAll('.answers');
+// const answerBoxes = quizBox.querySelectorAll('.answers');
 let numberCorrect = 0;
 
 // Questions and answers taken from W3schools JavaScript Quiz.  Link in README
@@ -147,9 +174,17 @@ const myQuestions = [
         correctAnswer: "b"
     }
 ]
-// Pagination Code
-
-// showSlide(currentSlide);
-
-submitButton.addEventListener('click', displayResults);
 displayQuiz();
+
+// Pagination Code
+const previousBtn = document.getElementById("previous");
+const nextBtn = document.getElementById("next");
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+showSlide(currentSlide);
+
+// Event Listeners
+submitButton.addEventListener('click', displayResults);
+previousBtn.addEventListener('click', showPreviousSlide);
+nextBtn.addEventListener('click', showNextSlide);
