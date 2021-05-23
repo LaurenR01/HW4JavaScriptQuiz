@@ -54,3 +54,8 @@ h1{
     position: relative;
     height: 150px;
 }
+#timer{
+    display: inline;
+    background-color: brown;
+    color: bisque;
+}

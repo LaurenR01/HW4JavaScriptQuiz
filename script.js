@@ -27,8 +27,8 @@ function displayQuiz(){
 function displayResults(){
     const answerBoxes = quizBox.querySelectorAll('.answers');
     let numberCorrect = 0;
-    myQuestions.forEach( (currentQuestion, questionNumber) => {
-        const answerBoxes = answerBoxes[questionNumber];
+    myQuestions.forEach((currentQuestion, questionNumber) => {
+        // const answerBoxes = answerBoxes[questionNumber];
         const selector = `input[name=question${questionNumber}]:checked`;
         const guess = (answerBoxes.querySelector(selector) || {}).value;
 
@@ -42,6 +42,10 @@ function displayResults(){
     });
     showResults.innerHTML = `${numberCorrect} out of ${myQuestions.length}`;
 };
+// function to show timer
+function showTimer() {
+    var i=0,timer=setInterval(function(){i++},1000);
+}
 // function to show a slide
 function showSlide(n) {
     slides[currentSlide].classList.remove('active-slide');
@@ -81,19 +85,19 @@ const myQuestions = [
     {
         question: "Inside which HTML element do we put Javascript?",
         answers: {
-            a: "<js>",
-            b: "<scripting>",
-            c: "<javascript>",
-            d: "<script>",
+            a: "&lt;js>",
+            b: "&lt;scripting>",
+            c: "&lt;javascript>",
+            d: "&lt;script>",
         },
         correctAnswer: "d"
     },
     {
         question: "Where is the correct place to insert a JavaScript?",
         answers: {
-            a: "The <head> section",
-            b: "Both the <head> section and the <body> section are correct",
-            c: "The <body> section",
+            a: "The &lt;head> section",
+            b: "Both the <head> section and the &lt;body> section are correct",
+            c: "The &lt;body> section",
         },
         correctAnswer: "b"
     },
@@ -164,7 +168,7 @@ const myQuestions = [
     
     },
     {
-        question: "Which event occurs when the user clicks on an HTML elememnt?",
+        question: "Which event occurs when the user clicks on an HTML element?",
         answers: {
             a: "onmouseclick",
             b: "onclick",
